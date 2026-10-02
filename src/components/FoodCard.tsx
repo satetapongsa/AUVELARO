@@ -1,7 +1,7 @@
 import React from 'react';
 import { MenuItem } from '../types';
 import { useStore } from '../context/StoreContext';
-import { Clock, Heart, Plus, Eye, ShieldCheck, Check } from 'lucide-react';
+import { Clock, Heart, Eye, ArrowRight } from 'lucide-react';
 
 interface FoodCardProps {
   dish: MenuItem;
@@ -9,22 +9,8 @@ interface FoodCardProps {
 }
 
 export const FoodCard: React.FC<FoodCardProps> = ({ dish, onSelectDish }) => {
-  const { addToCart, favorites, toggleFavorite } = useStore();
+  const { favorites, toggleFavorite } = useStore();
   const isFav = favorites.includes(dish.id);
-
-  const handleQuickAdd = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!dish.isAvailable) return;
-    
-    // If dish has required option groups, open detail modal instead
-    const hasRequiredOptions = dish.optionGroups?.some(g => g.isRequired);
-    if (hasRequiredOptions) {
-      onSelectDish(dish);
-      return;
-    }
-
-    addToCart(dish, 1, [], '');
-  };
 
   return (
     <div 
@@ -57,7 +43,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({ dish, onSelectDish }) => {
               ? 'bg-white text-[#722F37] shadow-2xs' 
               : 'bg-black/30 text-white hover:bg-black/50'
           }`}
-          title={isFav ? 'เลิกชอบ' : 'เพิ่มในรายการโปรด'}
+          title={isFav ? 'เลิกชอบ' : 'บันทึกในรายการสนใจ'}
         >
           <Heart className={`w-4 h-4 ${isFav ? 'fill-[#722F37]' : ''}`} />
         </button>
@@ -66,7 +52,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({ dish, onSelectDish }) => {
         <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white font-medium">
           <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px]">
             <Clock className="w-3 h-3 text-[#E6E3DD]" />
-            <span>{dish.preparationTimeMinutes} นาที</span>
+            <span>เวลาปรุงประมาณ {dish.preparationTimeMinutes} นาที</span>
           </div>
 
           {dish.dietaryLabels && dish.dietaryLabels.length > 0 && (
@@ -75,77 +61,48 @@ export const FoodCard: React.FC<FoodCardProps> = ({ dish, onSelectDish }) => {
             </span>
           )}
         </div>
-
-        {/* Sold out Overlay */}
-        {!dish.isAvailable && (
-          <div className="absolute inset-0 bg-black/75 backdrop-blur-xs flex flex-col items-center justify-center text-white p-4 text-center">
-            <span className="bg-[#722F37] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-1">
-              สินค้าหมดชั่วคราว
-            </span>
-            <span className="text-xs text-stone-300">วัตถุดิบหมดสำหรับวันนี้</span>
-          </div>
-        )}
       </div>
 
       {/* Content */}
-      <div className="p-4 flex-1 flex flex-col justify-between">
+      <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
-          <h3 className="font-serif font-bold text-[#252422] text-base group-hover:text-[#722F37] transition-colors line-clamp-1">
+          <h3 className="font-serif font-bold text-[#252422] text-lg group-hover:text-[#722F37] transition-colors line-clamp-1">
             {dish.name}
           </h3>
 
-          <p className="text-xs text-[#706B65] line-clamp-2 leading-relaxed mb-3 mt-1 font-light">
+          <p className="text-xs text-[#706B65] line-clamp-2 leading-relaxed mb-4 mt-1.5 font-light">
             {dish.description}
           </p>
         </div>
 
         <div>
           {/* Recipe Info snippet */}
-          <div className="flex items-center gap-2 text-[11px] text-[#A09A92] mb-3 pb-3 border-b border-[#EFECE6]">
-            <span>สูตรอิตาเลียน</span>
-            <span>•</span>
+          <div className="flex items-center gap-2 text-[11px] text-[#A09A92] mb-4 pb-3 border-b border-[#EFECE6]">
             <span>{dish.ingredients.length} วัตถุดิบ</span>
             <span>•</span>
             <span>{dish.portionSize}</span>
           </div>
 
-          {/* Price & Action */}
+          {/* Action */}
           <div className="flex items-center justify-between pt-1">
-            <div>
-              <span className="text-[10px] text-[#A09A92] uppercase tracking-wider block">ราคา</span>
-              <span className="text-lg font-bold text-[#722F37]">
-                ฿{dish.basePrice}
-              </span>
-            </div>
+            <span className="text-xs text-[#706B65] font-serif italic">
+              รายละเอียดและขั้นตอนปรุง
+            </span>
 
-            <div className="flex items-center gap-2">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onSelectDish(dish);
-                }}
-                className="p-2 rounded-xl text-[#706B65] bg-[#EFECE6] hover:bg-[#E6E3DD] transition-colors"
-                title="ดูรายละเอียดและสูตรอาหาร"
-              >
-                <Eye className="w-4 h-4" />
-              </button>
-
-              <button
-                onClick={handleQuickAdd}
-                disabled={!dish.isAvailable}
-                className={`px-3 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-all ${
-                  dish.isAvailable 
-                    ? 'bg-[#722F37] hover:bg-[#542229] text-white active:scale-95 shadow-2xs' 
-                    : 'bg-stone-200 text-stone-400 cursor-not-allowed'
-                }`}
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>สั่งเลย</span>
-              </button>
-            </div>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelectDish(dish);
+              }}
+              className="px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 bg-[#722F37] hover:bg-[#542229] text-white active:scale-95 transition-all shadow-2xs"
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span>ดูข้อมูลจาน</span>
+            </button>
           </div>
         </div>
       </div>
     </div>
   );
 };
+

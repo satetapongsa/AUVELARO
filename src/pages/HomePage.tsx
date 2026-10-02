@@ -3,8 +3,8 @@ import { useStore } from '../context/StoreContext';
 import { FoodCard } from '../components/FoodCard';
 import { MenuItem } from '../types';
 import { 
-  Utensils, ArrowRight, ShieldCheck, Clock, Wine, Sparkles, 
-  MapPin, Phone, Heart, ChevronRight, ChefHat, Calendar, Flame
+  Utensils, ArrowRight, Wine, Sparkles, 
+  MapPin, Phone, ChefHat, Calendar, Flame
 } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
@@ -27,16 +27,16 @@ export const HomePage: React.FC = () => {
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 bg-[#F7EFF1] text-[#722F37] px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase">
                 <ChefHat className="w-4 h-4" />
-                <span>CONTEMPORARY ITALIAN DINING</span>
+                <span>A MODERN EUROPEAN TABLE</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#252422] font-serif leading-tight">
                 The Art of <br />
-                <span className="italic font-normal text-[#722F37]">Dining Well.</span>
+                <span className="italic font-normal text-[#722F37]">European Dining.</span>
               </h1>
 
               <p className="text-sm sm:text-base text-[#706B65] max-w-xl leading-relaxed mx-auto lg:mx-0 font-light">
-                สัมผัสเสน่ห์ของอาหารอิตาเลียนร่วมสมัย คัดสรรวัตถุดิบอย่างพิถีพิถันจากแหล่งกำเนิด และรังสรรค์พาสต้าเส้นสดนวดมืออบในเตาฮาร์ทเพื่อมื้ออาหารค่ำที่น่าจดจำ
+                สัมผัสเสน่ห์ของอาหารยุโรปร่วมสมัย จากแรงบันดาลใจของอิตาลีและฝรั่งเศส พร้อมทำความรู้จักวัตถุดิบและรายละเอียดเบื้องหลังแต่ละจานอย่างลึกซึ้ง
               </p>
 
               {/* Action Buttons */}
@@ -62,15 +62,15 @@ export const HomePage: React.FC = () => {
               <div className="pt-8 border-t border-[#E6E3DD] grid grid-cols-3 gap-4 text-center lg:text-left text-xs text-[#706B65]">
                 <div>
                   <span className="font-bold text-lg text-[#252422] block font-serif">Puglia & Parma</span>
-                  <span>วัตถุดิบนำเข้าสด</span>
+                  <span>วัตถุดิบคัดสรรนำเข้า</span>
                 </div>
                 <div>
-                  <span className="font-bold text-lg text-[#252422] block font-serif">48 ชั่วโมง</span>
-                  <span>หมักแป้งพิซซ่าธรรมชาติ</span>
+                  <span className="font-bold text-lg text-[#252422] block font-serif">Fatta a Mano</span>
+                  <span>พาสต้าเส้นสดนวดมือ</span>
                 </div>
                 <div>
-                  <span className="font-bold text-lg text-[#252422] block font-serif">มื้อค่ำ & เดลี่</span>
-                  <span>บริการเสิร์ฟร้อน</span>
+                  <span className="font-bold text-lg text-[#252422] block font-serif">Contemporary</span>
+                  <span>สไตล์อิตาเลียน-ฝรั่งเศส</span>
                 </div>
               </div>
             </div>
@@ -80,7 +80,7 @@ export const HomePage: React.FC = () => {
               <div className="relative aspect-4/5 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
                 <img
                   src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80"
-                  alt="Artisanal Hearth Signature Steak & Pasta"
+                  alt="AUVELARO European Fine Dining"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
@@ -90,8 +90,8 @@ export const HomePage: React.FC = () => {
                     <Sparkles className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-widest text-[#706B65] font-semibold block">Chef's Signature Selection</span>
-                    <span className="text-sm font-serif font-bold text-[#252422]">Bistecca & Pasta Fatta a Mano</span>
+                    <span className="text-[10px] uppercase tracking-widest text-[#706B65] font-semibold block">Signature Dish Showcase</span>
+                    <span className="text-sm font-serif font-bold text-[#252422]">Grilled Ribeye & Pasta Fatta a Mano</span>
                   </div>
                 </div>
               </div>
@@ -107,16 +107,16 @@ export const HomePage: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 text-[#722F37] text-xs font-semibold uppercase tracking-widest mb-1">
               <Sparkles className="w-4 h-4" />
-              <span>Plati di Firma</span>
+              <span>Signature Selection</span>
             </div>
-            <h2 className="text-3xl font-bold text-[#252422] font-serif">เมนูซิกเนเจอร์ยอดนิยม</h2>
+            <h2 className="text-3xl font-bold text-[#252422] font-serif">เมนูอาหารยุโรปร่วมสมัยแนะนำ</h2>
           </div>
 
           <button
             onClick={() => setActiveTab('menu')}
             className="text-xs font-semibold text-[#722F37] hover:underline flex items-center gap-1 uppercase tracking-wider"
           >
-            <span>ดูเมนูอาหารทั้งหมด</span>
+            <span>สำรวจรายการเมนูทั้งหมด</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -144,23 +144,22 @@ export const HomePage: React.FC = () => {
 
               <h2 className="text-3xl sm:text-4xl font-bold text-[#252422] font-serif leading-tight">
                 พาสต้าเส้นสดนวดมือ <br />
-                และพิซซ่าเตาฟืนอบสดใหม่
+                และสเต๊กเนื้อคัดสรรพิเศษ
               </h2>
 
               <p className="text-xs sm:text-sm text-[#706B65] leading-relaxed font-light">
-                ทีมเชฟของ Artisanal Hearth มุ่งมั่นสืบทอดเทคนิคการปรุงอาหารอิตาเลียนดั้งเดิม
-                เราเลือกใช้น้ำมันมะกอกเอ็กซ์ตร้าเวอร์จินสกัดเย็น ชีสพาร์มิกิอาโน่บ่ม 24 เดือน มะเขือเทศ San Marzano จากภูเขาไฟ
-                และนวดแป้งพาสต้าสดด้วยมือทุกเช้าเพื่อความหนึบนุ่มลงตัวที่สุด
+                ทีมเชฟของ AUVELARO มุ่งมั่นผสมผสานวัฒนธรรมการรับประทานอาหารของอิตาลีและฝรั่งเศสเข้าด้วยกัน
+                เราเลือกใช้น้ำมันมะกอกเอ็กซ์ตร้าเวอร์จินสกัดเย็น ชีสพาร์มิกิอาโน่บ่ม 24 เดือน เนยสดฝรั่งเศส และพาสต้าเส้นสดนวดมือด้วยความใส่ใจ
               </p>
 
               <div className="grid grid-cols-2 gap-4 pt-2 text-xs font-semibold text-[#252422]">
                 <div className="flex items-center gap-2 bg-white p-3.5 rounded-xl border border-[#E6E3DD]">
                   <Utensils className="w-4 h-4 text-[#722F37]" />
-                  <span>พาสต้าเส้นสดนวดมือ</span>
+                  <span>พาสต้าเส้นสด Fatta a Mano</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white p-3.5 rounded-xl border border-[#E6E3DD]">
                   <Flame className="w-4 h-4 text-[#722F37]" />
-                  <span>อบในเตาฟืนหินภูเขาไฟ</span>
+                  <span>เทคนิคปรุงอาหารยุโรป</span>
                 </div>
               </div>
             </div>
@@ -175,8 +174,8 @@ export const HomePage: React.FC = () => {
               </div>
               <div className="aspect-3/4 rounded-2xl overflow-hidden shadow-md mt-8">
                 <img
-                  src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"
-                  alt="Wood Fired Italian Pizza"
+                  src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80"
+                  alt="Steak and European Cuisine"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -231,13 +230,13 @@ export const HomePage: React.FC = () => {
             </div>
 
             <h2 className="text-3xl font-bold font-serif text-white">
-              คัดสรรไวน์อิตาลีพรีเมียมจากทัสคานีและปิเอมอนเต
+              คัดสรรไวน์อิตาลีและฝรั่งเศสสำหรับจับคู่มื้ออาหาร
             </h2>
 
             <p className="text-xs text-[#A09A92] leading-relaxed max-w-xl">
-              ร้าน Artisanal Hearth รวบรวมฉลากไวน์อิตาลีบ่มพรีเมียม เช่น Chianti Classico DOCG และ Barolo DOCG สำหรับจับคู่มื้ออาหารค่ำในบรรยากาศร้าน
+              AUVELARO รวบรวมฉลากไวน์บ่มพรีเมียม สำหรับจับคู่มื้ออาหารค่ำในบรรยากาศร้าน
               <span className="block text-[11px] text-[#722F37] mt-1 font-semibold">
-                *หมายเหตุ: รายการไวน์นี้จัดทำขึ้นเพื่อเป็นข้อมูลสำหรับผู้ใหญ่ในการทานอาหารที่ร้านเท่านั้น ไม่เปิดบริการสั่งซื้อเครื่องดื่มแอลกอฮอล์ผ่านช่องทางออนไลน์
+                *หมายเหตุ: ข้อมูลรายการไวน์จัดทำขึ้นเพื่อเป็นข้อมูลประกอบการทานอาหารที่ร้านเท่านั้น ไม่มีการจำหน่ายออนไลน์
               </span>
             </p>
           </div>
@@ -247,7 +246,7 @@ export const HomePage: React.FC = () => {
               onClick={() => setActiveTab('reservations')}
               className="px-8 py-4 bg-[#722F37] hover:bg-[#542229] text-white font-semibold rounded-xl text-xs uppercase tracking-widest shadow-sm transition-all active:scale-95"
             >
-              สำรองโต๊ะสำหรับทานที่ร้าน
+              สำรองโต๊ะสำหรับมื้อค่ำ
             </button>
           </div>
 
@@ -260,20 +259,16 @@ export const HomePage: React.FC = () => {
           
           <div className="lg:col-span-8 space-y-4">
             <h2 className="text-2xl font-bold font-serif text-[#252422]">
-              ข้อมูลการเปิดให้บริการมื้อค่ำและทำรายการสั่งซื้อ
+              เปิดให้บริการมื้อค่ำบรรยากาศพรีเมียม
             </h2>
             <p className="text-xs text-[#706B65] leading-relaxed">
-              เรายินดีต้อนรับคุณสำหรับมื้ออาหารค่ำสุดพิเศษ และบริการจัดส่งเดลิเวอรี่ถึงบ้าน
+              สัมผัสประสบการณ์มื้อค่ำสุดพิเศษสไตล์ยุโรปท่ามกลางบรรยากาศการต้อนรับที่อบอุ่น
             </p>
 
             <div className="flex flex-wrap items-center gap-6 pt-2 text-xs text-[#252422] font-medium">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#722F37]" />
                 <span>{settings.address}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#722F37]" />
-                <span>{settings.openingHours}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#722F37]" />
@@ -284,10 +279,10 @@ export const HomePage: React.FC = () => {
 
           <div className="lg:col-span-4 text-center lg:text-right">
             <button
-              onClick={() => setActiveTab('menu')}
+              onClick={() => setActiveTab('reservations')}
               className="w-full sm:w-auto px-8 py-4 bg-[#722F37] hover:bg-[#542229] text-white font-semibold rounded-xl text-xs uppercase tracking-widest shadow-sm transition-all"
             >
-              สั่งอาหารออนไลน์เลย
+              สำรองโต๊ะมื้อค่ำ
             </button>
           </div>
 
@@ -297,3 +292,4 @@ export const HomePage: React.FC = () => {
     </div>
   );
 };
+

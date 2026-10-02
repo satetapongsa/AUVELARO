@@ -1,26 +1,23 @@
 import React, { useState } from 'react';
 import { useStore } from '../context/StoreContext';
 import { 
-  ShoppingBag, Search, Utensils, Home, Info, 
-  User, Heart, ClipboardList, Menu, X, Calendar
+  Search, Utensils, Home, Info, 
+  Heart, Menu, X, Calendar
 } from 'lucide-react';
 
 interface HeaderProps {
-  onOpenCart: () => void;
+  onOpenCart?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
-  const { cart, favorites, activeTab, setActiveTab, searchQuery, setSearchQuery } = useStore();
+export const Header: React.FC<HeaderProps> = () => {
+  const { favorites, activeTab, setActiveTab, searchQuery, setSearchQuery } = useStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const cartItemCount = cart.reduce((count, item) => count + item.quantity, 0);
 
   const navItems = [
     { id: 'home', label: 'หน้าหลัก', icon: Home },
     { id: 'menu', label: 'เมนูอาหาร', icon: Utensils },
     { id: 'about', label: 'เรื่องราวของร้าน', icon: Info },
-    { id: 'reservations', label: 'สำรองโต๊ะมื้อค่ำ', icon: Calendar },
-    { id: 'tracking', label: 'ติดตามคำสั่งซื้อ', icon: ClipboardList }
+    { id: 'reservations', label: 'สำรองโต๊ะมื้อค่ำ', icon: Calendar }
   ];
 
   return (
@@ -69,7 +66,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${
                     isActive 
                       ? 'bg-[#722F37] text-white shadow-2xs' 
                       : 'text-[#706B65] hover:text-[#252422] hover:bg-[#EFECE6]'
@@ -87,9 +84,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
             
             {/* Favorites */}
             <button
-              onClick={() => setActiveTab('account')}
+              onClick={() => setActiveTab('menu')}
               className="p-2.5 rounded-lg text-[#706B65] hover:text-[#722F37] hover:bg-[#EFECE6] transition-colors relative"
-              title="รายการที่ชอบ"
+              title="รายการเมนูที่สนใจ"
             >
               <Heart className="w-4 h-4" />
               {favorites.length > 0 && (
@@ -97,31 +94,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
               )}
             </button>
 
-            {/* User Profile / History */}
+            {/* Primary Action Button - Explore Menu */}
             <button
-              onClick={() => setActiveTab('account')}
-              className={`p-2.5 rounded-lg transition-colors text-[#706B65] hover:bg-[#EFECE6] ${
-                activeTab === 'account' ? 'text-[#722F37]' : ''
-              }`}
-              title="บัญชีผู้ใช้ / ประวัติคำสั่งซื้อ"
+              onClick={() => setActiveTab('menu')}
+              className="flex items-center gap-2 bg-[#722F37] hover:bg-[#542229] text-white px-5 py-2.5 rounded-xl font-semibold text-xs uppercase tracking-wider transition-transform active:scale-95 shadow-2xs"
             >
-              <User className="w-4 h-4" />
-            </button>
-
-            {/* Cart Button */}
-            <button
-              onClick={onOpenCart}
-              className="flex items-center gap-2 bg-[#722F37] hover:bg-[#542229] text-white px-4 py-2.5 rounded-xl font-semibold text-xs uppercase tracking-wider transition-transform active:scale-95 shadow-2xs"
-            >
-              <div className="relative">
-                <ShoppingBag className="w-4 h-4" />
-                {cartItemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-white text-[#722F37] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-[#722F37]">
-                    {cartItemCount}
-                  </span>
-                )}
-              </div>
-              <span className="hidden sm:inline font-semibold">ตะกร้า</span>
+              <Utensils className="w-4 h-4" />
+              <span className="hidden sm:inline font-semibold">สำรวจเมนู</span>
             </button>
 
             {/* Mobile Menu Toggle */}
@@ -179,3 +158,4 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
     </header>
   );
 };
+
