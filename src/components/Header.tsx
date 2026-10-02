@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useStore } from '../context/StoreContext';
 import { 
-  ShoppingBag, Search, Utensils, Home, Info, HelpCircle, 
+  ShoppingBag, Search, Utensils, Home, Info, 
   User, Heart, ClipboardList, Menu, X, Calendar
 } from 'lucide-react';
 
@@ -10,7 +10,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
-  const { settings, cart, favorites, activeTab, setActiveTab, searchQuery, setSearchQuery } = useStore();
+  const { cart, favorites, activeTab, setActiveTab, searchQuery, setSearchQuery } = useStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const cartItemCount = cart.reduce((count, item) => count + item.quantity, 0);
@@ -19,36 +19,36 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
     { id: 'home', label: 'หน้าหลัก', icon: Home },
     { id: 'menu', label: 'เมนูอาหาร', icon: Utensils },
     { id: 'about', label: 'เรื่องราวของร้าน', icon: Info },
-    { id: 'reservations', label: 'สำรองโต๊ะ', icon: Calendar },
-    { id: 'tracking', label: 'ติดตามออเดอร์', icon: ClipboardList }
+    { id: 'reservations', label: 'สำรองโต๊ะมื้อค่ำ', icon: Calendar },
+    { id: 'tracking', label: 'ติดตามคำสั่งซื้อ', icon: ClipboardList }
   ];
 
   return (
     <header className="sticky top-0 z-40 bg-[#F7F5F0]/95 backdrop-blur-md border-b border-[#E6E3DD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-22">
+        <div className="flex items-center justify-between h-24">
           
-          {/* Brand Logo & Name */}
+          {/* Official Wordmark & Tagline */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => setActiveTab('home')}>
-            <div className="w-10 h-10 rounded-full bg-[#722F37] text-[#FAF7F2] flex items-center justify-center font-serif font-bold text-lg tracking-widest shadow-sm">
-              AH
+            <div className="w-10 h-10 rounded-full bg-[#722F37] text-[#FAF7F2] flex items-center justify-center font-serif font-bold text-lg tracking-widest shadow-2xs">
+              A
             </div>
             <div>
-              <span className="text-xl font-bold tracking-tight text-[#252422] block font-serif leading-none">
-                ARTISANAL HEARTH
+              <span className="text-2xl font-bold tracking-wider text-[#252422] block font-serif leading-none">
+                AUVELARO
               </span>
-              <span className="text-[10px] text-[#706B65] uppercase tracking-widest block mt-1 font-medium">
-                Modern Italian & European Dining
+              <span className="text-[9px] text-[#706B65] uppercase tracking-[0.25em] block mt-1 font-semibold">
+                A MODERN EUROPEAN TABLE
               </span>
             </div>
           </div>
 
-          {/* Search Bar - Desktop */}
+          {/* Search Input - Desktop */}
           <div className="hidden md:flex flex-1 max-w-xs mx-6">
             <div className="relative w-full">
               <input
                 type="text"
-                placeholder="ค้นหาเมนูอิตาเลียน..."
+                placeholder="ค้นหาเมนูอาหารอิตาเลียน-ฝรั่งเศส..."
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
@@ -69,7 +69,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium transition-colors ${
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${
                     isActive 
                       ? 'bg-[#722F37] text-white shadow-2xs' 
                       : 'text-[#706B65] hover:text-[#252422] hover:bg-[#EFECE6]'
@@ -82,10 +82,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
             })}
           </nav>
 
-          {/* Actions */}
+          {/* Header Action Utilities */}
           <div className="flex items-center gap-2">
             
-            {/* Favorites Button */}
+            {/* Favorites */}
             <button
               onClick={() => setActiveTab('account')}
               className="p-2.5 rounded-lg text-[#706B65] hover:text-[#722F37] hover:bg-[#EFECE6] transition-colors relative"
@@ -97,7 +97,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
               )}
             </button>
 
-            {/* User Account */}
+            {/* User Profile / History */}
             <button
               onClick={() => setActiveTab('account')}
               className={`p-2.5 rounded-lg transition-colors text-[#706B65] hover:bg-[#EFECE6] ${
@@ -111,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
             {/* Cart Button */}
             <button
               onClick={onOpenCart}
-              className="flex items-center gap-2 bg-[#722F37] hover:bg-[#542229] text-white px-4 py-2.5 rounded-xl font-medium text-xs transition-transform active:scale-95 shadow-2xs"
+              className="flex items-center gap-2 bg-[#722F37] hover:bg-[#542229] text-white px-4 py-2.5 rounded-xl font-semibold text-xs uppercase tracking-wider transition-transform active:scale-95 shadow-2xs"
             >
               <div className="relative">
                 <ShoppingBag className="w-4 h-4" />
@@ -136,13 +136,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#F7F5F0] border-b border-[#E6E3DD] px-4 pt-3 pb-6 space-y-3">
           <div className="relative mb-2">
             <input
               type="text"
-              placeholder="ค้นหาเมนูอาหารอิตาเลียน..."
+              placeholder="ค้นหาเมนูอาหารอิตาเลียน-ฝรั่งเศส..."
               value={searchQuery}
               onChange={(e) => {
                 setSearchQuery(e.target.value);
@@ -164,7 +164,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCart }) => {
                     setActiveTab(item.id);
                     setMobileMenuOpen(false);
                   }}
-                  className={`flex items-center gap-2 p-3 rounded-lg text-xs font-medium transition-colors ${
+                  className={`flex items-center gap-2 p-3 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${
                     isActive ? 'bg-[#722F37] text-white' : 'bg-white text-[#706B65] border border-[#E6E3DD]'
                   }`}
                 >

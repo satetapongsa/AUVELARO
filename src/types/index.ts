@@ -47,8 +47,10 @@ export interface MenuItemOptionGroup {
 export interface MenuItem {
   id: string;
   name: string;
+  englishName?: string;
   slug: string;
   description: string;
+  englishDescription?: string;
   image: string;
   categoryId: string;
   basePrice: number;
@@ -71,6 +73,7 @@ export interface MenuItem {
 export interface MenuCategory {
   id: string;
   name: string;
+  englishName?: string;
   slug: string;
   description: string;
   image?: string;
@@ -142,6 +145,8 @@ export interface Order {
 
 export interface RestaurantSettings {
   name: string;
+  brandLine: string;
+  thaiPronunciation: string;
   logoUrl: string;
   heroImageUrl: string;
   phone: string;
