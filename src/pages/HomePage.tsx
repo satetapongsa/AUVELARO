@@ -101,15 +101,15 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Section B — Signature Dishes */}
+      {/* Section B — Signature Selection Bento Showcase */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-10 gap-4">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 gap-4 border-b border-[#E6E3DD] pb-6">
           <div>
-            <div className="flex items-center gap-2 text-[#722F37] text-xs font-semibold uppercase tracking-widest mb-1">
+            <div className="flex items-center gap-2 text-[#722F37] text-xs font-semibold uppercase tracking-widest mb-1.5">
               <Sparkles className="w-4 h-4" />
-              <span>Signature Selection</span>
+              <span>Plati di Firma — Culinary Collection</span>
             </div>
-            <h2 className="text-3xl font-bold text-[#252422] font-serif">เมนูอาหารยุโรปร่วมสมัยแนะนำ</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#252422] font-serif">เมนูอาหารยุโรปร่วมสมัยแนะนำประจำฤดูกาล</h2>
           </div>
 
           <button
@@ -121,16 +121,19 @@ export const HomePage: React.FC = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {signatureDishes.map((dish) => (
+        {/* Asymmetric Bento Grid Composition */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {signatureDishes.map((dish, idx) => (
             <FoodCard
               key={dish.id}
               dish={dish}
+              featured={idx === 0}
               onSelectDish={(d: MenuItem) => setSelectedDish(d)}
             />
           ))}
         </div>
       </section>
+
 
       {/* Section C — Our Philosophy */}
       <section className="bg-[#EFECE6] border-y border-[#E6E3DD] py-20">
